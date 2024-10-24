@@ -3,7 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+tasks.register<Wrapper>("wrapper") {
+    gradleVersion = "8.8" // Use the desired Gradle version
+}
+
 android {
+
     namespace = "com.example.programacao_mobile"
     compileSdk = 34
 

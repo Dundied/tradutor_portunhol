@@ -16,22 +16,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inicializar o DataBinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        // Adicionar um listener para o campo de texto
-        binding.textInputEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                // Lógica para realizar a tradução (simulação)
-                val translatedText = traduzirPortunhol(s.toString())
-                binding.translatedTextView.text = translatedText
-            }
-        })
+        binding.translateButton.setOnClickListener {
+            val inputText = binding.textInputEditText.text.toString()
+            val translatedText = traduzirPortunhol(inputText)
+            binding.translatedTextView.text = translatedText
+        }
     }
+
 
     // Função que simula a tradução para espanhol
     fun traduzirPortunhol(mensagem: String): String {
